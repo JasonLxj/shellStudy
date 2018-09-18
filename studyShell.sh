@@ -3,68 +3,99 @@
 #author： j
 # =左右不能有空格
 
-#select DRINK in tea cofee water juice appe all none
+# function
+
+number_one () {
+    echo "This is the first function speaking..."
+    number_two # 调用number_two
+}
+
+number_two () {
+echo "This is now the second function speaking..."
+}
+
+# Calling function one.
+number_one
+function_return_10() {
+    echo "return 10"
+    return 10
+}
+
+function_return_10
+
+ret=$?
+echo $ret
+
+function_name_two_par() {
+    echo "hello $1 $2"
+}
+
+function_name_two_par xiaojie li # hello xiaojie li
+
+function_name() {
+    echo hello
+}
+
+function_name
+
+# Shell Loop Control
+a=1
+b=1
+c=0
+
+#while [ $a -le 10 ]
 #do
-#case $DRINK in
-#    tea|cofee|water|all)
-#        echo "Go to canteen"
-#        ;;
-#    juice|appe)
-#        echo "Available at home"
-#        ;;
-#    none)
-#        break
-#        ;;
-#    *) echo "ERROR: Invalid selection"
-#        ;;
-#    esac
+#    while [ $b -le 10 ]
+#    do
+#        c=`expr $c + 1`
+#echo $c
+#        if [ $c -ge 30 ]
+#        then
+#break 1 # bewak N 表示brek几层循环 同理continue也是
+#        fi
+#done
 #done
 
 # Shell Loop Types
-
-echo -n "1231"
-echo -n "ppppppppppp"
-
 a=0
 while [ "$a" -lt 10 ]    # this is loop1
     do
     b="$a"
     while [ "$b" -ge 0 ]  # this is loop2
         do
-        echo "$b " -n
+        echo -n "$b "
         b=`expr $b - 1`
     done
         echo
         a=`expr $a + 1`
 done
 
-select word in i know that life is always about letting go , but the saddest patt is we even dont have time to say goodbye
-do
-echo "word is $word"
-    case $word in
-        i|know|that|life|is|always|about|letting|go)
-            echo "上部分"
-            ;;
-        but|the|saddest|patt|is|we|even|dont|have|time|to|say|goodbye)
-            echo "下部分"
-            ;;
-        ,)
-            break
-            ;;
-        *)
-            echo $word
-            echo "ERROR: Invalid selection"
-            ;;
-        esac
-done
-
-
+echo '输入整数'
 read a
 until [ $a -ge 10 ]
 do
     a=`expr $a + 1`
     echo $a
 done
+
+
+select DRINK in tea cofee water juice appe all none
+do
+case $DRINK in
+tea|cofee|water|all)
+echo "Go to canteen"
+;;
+juice|appe)
+echo "Available at home"
+;;
+none)
+break
+;;
+*) echo "ERROR: Invalid selection"
+;;
+esac
+done
+
 
 
 for FILE in $HOME/Study/shell/*
